@@ -18,7 +18,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 200))
-        headerView.backgroundColor = UIColor(red: 164/255.0, green: 174/255.0, blue: 246/255.0, alpha: 1)
+        headerView.backgroundColor = UIColor.cyan
         
         tableview = UITableView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height), style: .plain)
         tableview.delegate = self
@@ -46,8 +46,10 @@ class ViewController: UIViewController {
 // MARK: - UIScrollViewDelegate
 extension ViewController : UIScrollViewDelegate {
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        //拖拽时，开始执行
         if waveView.startWave() {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) {
+                //延时结束动画
                 self.waveView.stopWave()
             }
         }
